@@ -1,0 +1,41 @@
+name: ""
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  JAVA_VERSION: '21'
+
+jobs:
+  test:
+    name:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Mostrar estrutura .github/workflows
+          run: | 
+            echo " == Estrutura do diretório e arquivos .github/workflows == "
+            ls -la .github/workflows
+            echo ""
+            echo " Total de workflows: $(ls -1 .github/workflows/*.yml | wc -l) "
+
+        - name: Elementos obrigatórios do workflow
+          run: |
+            echo " == Elementos obrigatórios do workflow == "
+            echo "name: Define o nome do workflow (opcional, mas recomendado para identificação)"
+            echo "on: Define os eventos que disparam o workflow (ex: push, pull_request, etc.)"
+            echo "jobs: Define os trabalhos a serem executados (ex: build, test, deploy)"
+            echo "runs-on: Especifica o ambiente onde o trabalho será executado (ex: ubuntu-latest)"
+            echo "steps: Define as etapas a serem executadas dentro de um trabalho (ex: usar ações, executar comandos)"
+        - name: Variáveis e Contexto
+          run: |
+            echo " == Variáveis e Contexto == "
+            echo "Variáveis de ambiente: Permitem armazenar valores que podem ser usados em todo o workflow (ex: JAVA_VERSION)"
+            echo "Contexto: Fornece informações sobre o ambiente de execução, como github, env, secrets, etc."
+            echo "Exemplo de uso de variável: {{ env.JAVA_VERSION }}"
+            echo "Exemplo de uso de contexto: ${{ github.event_name }}"
