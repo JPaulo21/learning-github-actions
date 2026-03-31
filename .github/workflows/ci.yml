@@ -37,5 +37,5 @@ jobs:
             echo " == Variáveis e Contexto == "
             echo "Variáveis de ambiente: Permitem armazenar valores que podem ser usados em todo o workflow (ex: JAVA_VERSION)"
             echo "Contexto: Fornece informações sobre o ambiente de execução, como github, env, secrets, etc."
-            echo "Exemplo de uso de variável: {{ env.JAVA_VERSION }}"
+            echo "Exemplo de uso de variável: ${{ env.JAVA_VERSION }}"
             echo "Exemplo de uso de contexto: ${{ github.event_name }}"
